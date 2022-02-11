@@ -4,7 +4,8 @@ $(document).ready(function () {
 
 function checkUncheckAmenities () {
   const amenities = {};
-  $(document).on('change', function () {
+
+  $(document).on('change', "input[type='checkbox']", function () {
     if (this.checked) {
       amenities[$(this).data('id')] = $(this).data('name');
     } else {
