@@ -5,18 +5,18 @@ $(document).ready(function () {
   API_FILTER();
 });
 
-function checkUncheckAmenities () {
-  const amenities = {};
+const checkedAmenities = {};
 
+function checkUncheckAmenities () {
   $(document).on('change', "input[type='checkbox']", function () {
     if (this.checked) {
-      amenities[$(this).data('id')] = $(this).data('name');
+      checkedAmenities[$(this).data('id')] = $(this).data('name');
     } else {
-      delete amenities[$(this).data('id')];
+      delete checkedAmenities[$(this).data('id')];
     }
-    const values = Object.values(amenities);
+    const values = Object.values(checkedAmenities);
     if (values.length > 0) {
-      $('div.amenities > h4').text(Object.values(amenities).join(', '));
+      $('div.amenities > h4').text(Object.values(checkedAmenities).join(', '));
     } else {
       $('div.amenities > h4').html('&nbsp;');
     }
@@ -57,14 +57,13 @@ function API_POP () {
 }
 
 // Filter places by Amenity
-const amen = {};
 function API_FILTER () {
   const api = window.location.hostname;
   $('button').click(function () {
     $.ajax({
       type: 'POST',
       url: `${api}/api/v1/places_search`,
-      data: JSON.stringify({ amenities: Object.keys(amen) }),
+      data: JSON.stringify({ amenities: Object.keys(checkedAmenities) }),
       contentType: 'application.json',
       success: function (data) {
         for (let i = 0; i < data.length; i++) {
