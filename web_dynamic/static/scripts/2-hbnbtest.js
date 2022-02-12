@@ -27,7 +27,7 @@ function API_CALL () {
   const api = window.location.hostname;
   $.ajax({
     type: 'GET',
-    url: `${api}+/api/v1/status/`,
+    url: `${api}/api/v1/status/`,
     dataType: 'json',
     success: function (data) {
       if (data.status === 'OK') {

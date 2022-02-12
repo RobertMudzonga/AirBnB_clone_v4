@@ -29,7 +29,7 @@ function API_CALL () {
   const api = window.location.hostname;
   $.ajax({
     type: 'GET',
-    url: `${api}+/api/v1/status/`,
+    url: `${api}/api/v1/status/`,
     dataType: 'json',
     success: function (data) {
       if (data.status === 'OK') {
@@ -46,7 +46,7 @@ function API_POP () {
   const api = window.location.hostname;
   $.ajax({
     type: 'POST',
-    url: `${api}+/api/v1/places_search`,
+    url: `${api}/api/v1/places_search`,
     data: JSON.stringify({}),
     success: function (data) {
       for (let i = 0; i < data.length; i++) {
@@ -63,7 +63,7 @@ function API_FILTER () {
   $('button').click(function () {
     $.ajax({
       type: 'POST',
-      url: `${api}+/api/v1/places_search`,
+      url: `${api}/api/v1/places_search`,
       data: JSON.stringify({ amenities: Object.keys(amen) }),
       contentType: 'application.json',
       success: function (data) {
